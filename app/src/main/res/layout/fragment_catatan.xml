@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_note"
+        android:id="@+id/listCatatan"
         android:layout_width="@dimen/margin0dp"
         android:layout_height="@dimen/margin0dp"
         app:layout_constraintBottom_toTopOf="@+id/btnBuat"

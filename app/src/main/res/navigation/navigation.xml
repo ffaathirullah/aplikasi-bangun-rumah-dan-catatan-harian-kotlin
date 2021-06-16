@@ -13,5 +13,17 @@
     <fragment
         android:id="@+id/halamanCatatan"
         android:name="org.d3if4203.assesment2.ui.HalamanCatatan"
-        android:label="HalamanCatatan" />
+        android:label="HalamanCatatan" >
+        <action
+            android:id="@+id/action_halamanCatatan_to_halamanEdit"
+            app:destination="@id/halamanEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/halamanEdit"
+        android:name="org.d3if4203.assesment2.ui.HalamanEdit"
+        android:label="HalamanEdit" >
+        <action
+            android:id="@+id/action_halamanEdit_to_halamanCatatan"
+            app:destination="@id/halamanCatatan" />
+    </fragment>
 </navigation>
