@@ -1,4 +1,5 @@
 package org.d3if4203.assesment2.ui
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -44,14 +45,10 @@ class HalamanCatatan : Fragment() {
             }
 
             override fun onUpdate(catatan: Catatan) {
-                TODO("Not yet implemented")
             }
 
             override fun onDelete(catatan: Catatan) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    loadData()
-                    db?.catatanDao()?.deleteCatatan(catatan)
-                }
+                deleteAlert(catatan)
             }
 
         })
@@ -67,6 +64,24 @@ class HalamanCatatan : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
+    private fun deleteAlert(catatan: Catatan){
+        val dialog = AlertDialog.Builder(this.context)
+        dialog.apply {
+            setTitle("Konfirmasi Hapus")
+            setMessage("Apakah anda benar ingin menghapus ${catatan.judul}?")
+            setNegativeButton("Batal") { dialogInterface, i ->
+                dialogInterface.dismiss()
+            }
+            setPositiveButton("Hapus") { dialogInterface, i ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    db?.catatanDao()?.deleteCatatan(catatan)
+                    dialogInterface.dismiss()
+                    loadData()
+                }
+            }
+        }
+        dialog.show()
+    }
 
     fun nextHalaman (){
         binding.btnBuat.setOnClickListener {view: View ->
@@ -79,14 +94,10 @@ class HalamanCatatan : Fragment() {
             }
 
             override fun onUpdate(catatan: Catatan) {
-                TODO("Not yet implemented")
             }
 
             override fun onDelete(catatan: Catatan) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    loadData()
-                    db?.catatanDao()?.deleteCatatan(catatan)
-                }
+              deleteAlert(catatan)
             }
 
         })

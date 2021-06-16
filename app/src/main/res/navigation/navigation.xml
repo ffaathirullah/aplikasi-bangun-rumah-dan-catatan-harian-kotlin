@@ -8,7 +8,8 @@
         android:label="HalamanAwal" >
         <action
             android:id="@+id/action_halamanAwal_to_halamanCatatan"
-            app:destination="@id/halamanCatatan" />
+            app:destination="@id/halamanCatatan"
+            app:popUpTo="@id/halamanAwal" />
     </fragment>
     <fragment
         android:id="@+id/halamanCatatan"
@@ -16,7 +17,8 @@
         android:label="HalamanCatatan" >
         <action
             android:id="@+id/action_halamanCatatan_to_halamanEdit"
-            app:destination="@id/halamanEdit" />
+            app:destination="@id/halamanEdit"
+            app:popUpTo="@id/halamanAwal" />
     </fragment>
     <fragment
         android:id="@+id/halamanEdit"

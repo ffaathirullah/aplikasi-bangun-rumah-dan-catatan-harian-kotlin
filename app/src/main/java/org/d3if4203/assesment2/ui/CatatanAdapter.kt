@@ -59,7 +59,7 @@ class CatatanAdapter (var catatans: ArrayList<Catatan>, var listener: OnAdapterL
     interface OnAdapterListener {
         fun onClick(catatan: Catatan)
         fun onUpdate(catatan: Catatan)
-         fun onDelete(catatan: Catatan)
+        fun onDelete(catatan: Catatan)
     }
 
 
