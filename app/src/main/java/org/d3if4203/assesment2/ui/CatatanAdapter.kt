@@ -7,19 +7,48 @@ import androidx.recyclerview.widget.RecyclerView
 import org.d3if4203.assesment2.databinding.AdapterCatatanBinding
 import org.d3if4203.assesment2.db.Catatan
 
-class CatatanAdapter (var catatans: ArrayList<Catatan>) : RecyclerView.Adapter<CatatanAdapter.CatatanViewHolder>() {
+class CatatanAdapter (var catatans: ArrayList<Catatan>, var listener: OnAdapterListener) : RecyclerView.Adapter<CatatanAdapter.CatatanViewHolder>() {
 
-    class CatatanViewHolder(private val itemBinding: AdapterCatatanBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(catatan: Catatan) {
-            itemBinding.textTitle.text = catatan.judul
-        }
-    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatatanViewHolder {
         val itemBinding = AdapterCatatanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CatatanViewHolder(itemBinding)
+        return CatatanViewHolder(itemBinding, listener)
     }
 
     override fun getItemCount() = catatans.size
+
+    class CatatanViewHolder(private val itemBinding: AdapterCatatanBinding,   var listener: OnAdapterListener) : RecyclerView.ViewHolder(itemBinding.root) {
+
+        fun bind(catatan: Catatan) {
+            itemBinding.textTitle.text = catatan.judul
+        }
+        fun bind2(catatan: Catatan) {
+            itemBinding.textDesx.text = catatan.catatan
+        }
+        fun bind3(catatan: Catatan ) {
+            itemBinding.textDesx.setOnClickListener {
+                listener.onClick(catatan)
+            }
+        }
+        fun bind4(catatan: Catatan ) {
+            itemBinding.iconEdit.setOnClickListener {
+                listener.onUpdate(catatan)
+            }
+        }
+        fun bind5(catatan: Catatan ) {
+            itemBinding.iconDelete.setOnClickListener {
+                listener.onDelete(catatan)
+            }
+        }
+    }
+
+    override fun onBindViewHolder(holder: CatatanViewHolder, position: Int) {
+        val catatan = catatans[position]
+        holder.bind(catatan)
+        holder.bind2(catatan)
+        holder.bind3(catatan)
+        holder.bind4(catatan)
+        holder.bind5(catatan)
+    }
 
 
     fun setData(newList: List<Catatan>) {
@@ -27,10 +56,12 @@ class CatatanAdapter (var catatans: ArrayList<Catatan>) : RecyclerView.Adapter<C
         catatans.addAll(newList)
     }
 
-    override fun onBindViewHolder(holder: CatatanViewHolder, position: Int) {
-        val catatan = catatans[position]
-        holder.bind(catatan)
+    interface OnAdapterListener {
+        fun onClick(catatan: Catatan)
+        fun onUpdate(catatan: Catatan)
+         fun onDelete(catatan: Catatan)
     }
+
 
 }
 

@@ -1,5 +1,5 @@
 package org.d3if4203.assesment2.ui
-
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,9 +14,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.d3if4203.assesment2.R
 import org.d3if4203.assesment2.databinding.FragmentCatatanBinding
+import org.d3if4203.assesment2.db.Catatan
 import org.d3if4203.assesment2.db.CatatanDB
 
 class HalamanCatatan : Fragment() {
+    private var catatanId = 0
     private val db by lazy { this.context?.let { CatatanDB(it) } }
     private lateinit var binding: FragmentCatatanBinding
     lateinit var catatanAdapter: CatatanAdapter
@@ -29,25 +31,50 @@ class HalamanCatatan : Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
+    private fun loadData(){
         CoroutineScope(Dispatchers.IO).launch {
-            val catatan = db?.catatanDao()?.getCatatans()
-            Log.d("MainActivity", "dbRespons : $catatan")
-            withContext(Dispatchers.Main){
-                if (catatan != null) {
-                    catatanAdapter.setData(catatan)
-                }
+            db?.catatanDao()?.getCatatans()?.let { catatanAdapter.setData(it) }
+            withContext(Dispatchers.Main) {
+                catatanAdapter.notifyDataSetChanged()
             }
         }
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        loadData()
+        CoroutineScope(Dispatchers.IO).launch {
+            val catatan = db!!.catatanDao().getCatatans()
+            withContext(Dispatchers.Main){
+                catatanAdapter.setData(catatan)
+            }
+            Log.d("MainActivity", "dbRespons : $catatan")
+
+        }
+        super.onCreate(savedInstanceState)
+
+    }
+
     fun nextHalaman (){
         binding.btnBuat.setOnClickListener {view: View ->
             view.findNavController().navigate(R.id.action_halamanCatatan_to_halamanEdit)
         }
     }
     private fun setupRecyclerView () {
-        catatanAdapter = CatatanAdapter(arrayListOf() )
+        catatanAdapter = CatatanAdapter(arrayListOf(),  object : CatatanAdapter.OnAdapterListener {
+            override fun onClick(catatan: Catatan) {
+            }
+
+            override fun onUpdate(catatan: Catatan) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDelete(catatan: Catatan) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    db?.catatanDao()?.deleteCatatan(catatan)
+                    loadData()
+                }
+            }
+
+        })
         binding.listCatatan.apply {
             layoutManager = LinearLayoutManager(this.context)
             adapter = catatanAdapter

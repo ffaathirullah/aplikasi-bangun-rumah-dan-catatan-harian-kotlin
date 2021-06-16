@@ -1,5 +1,6 @@
 package org.d3if4203.assesment2.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,12 +19,13 @@ class HalamanEdit : Fragment() {
 
     private val db by lazy { this.context?.let { CatatanDB(it) } }
     private var catatanId = 0
-
+    private var noteId = 0
     private lateinit var binding: FragmentEditBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentEditBinding.inflate(layoutInflater, container, false)
         setupLstener()
+
         return binding.root
     }
 
