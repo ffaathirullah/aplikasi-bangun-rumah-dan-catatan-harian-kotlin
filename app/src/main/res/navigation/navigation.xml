@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    app:startDestination="@id/halamanAwal">
+    <fragment
+        android:id="@+id/halamanAwal"
+        android:name="org.d3if4203.assesment2.ui.HalamanAwal"
+        android:label="HalamanAwal" >
+        <action
+            android:id="@+id/action_halamanAwal_to_halamanCatatan"
+            app:destination="@id/halamanCatatan" />
+    </fragment>
+    <fragment
+        android:id="@+id/halamanCatatan"
+        android:name="org.d3if4203.assesment2.ui.HalamanCatatan"
+        android:label="HalamanCatatan" />
+</navigation>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin16dp">16dp</dimen>
+    <dimen name="textsizeH1">24dp</dimen>
+    <dimen name="dimenGambar1width">338dp</dimen>
+    <dimen name="dimenGambar1height">309dp</dimen>
+    <dimen name="imageButtonWidth">240dp</dimen>
+    <dimen name="imageButtonHeight">130dp</dimen>
+    <dimen name="margintopH2">8dp</dimen>
+    <dimen name="margin18dp">18dp</dimen>
+    <dimen name="margin6dp">6dp</dimen>
+    <dimen name="margin280dp">280dp</dimen>
+    <dimen name="margin0dp">0dp</dimen>
+    <dimen name="margin64dp">64dp</dimen>
+    <dimen name="margin1dp">1dp</dimen>
+    <dimen name="margin2dp">2dp</dimen>
+    <dimen name="margin10dp">10dp</dimen>
+</resources>
