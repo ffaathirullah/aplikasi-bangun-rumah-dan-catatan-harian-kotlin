@@ -19,10 +19,9 @@ import org.d3if4203.assesment2.db.CatatanDB
 
 class HalamanCatatan : Fragment() {
     private var catatanId = 0
-    private val db by lazy { this.context?.let { CatatanDB(it) } }
     private lateinit var binding: FragmentCatatanBinding
     lateinit var catatanAdapter: CatatanAdapter
-
+    private val db by lazy { this.context?.let { CatatanDB(it) } }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentCatatanBinding.inflate(layoutInflater, container, false)
@@ -40,6 +39,22 @@ class HalamanCatatan : Fragment() {
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        catatanAdapter = CatatanAdapter(arrayListOf(), object : CatatanAdapter.OnAdapterListener {
+            override fun onClick(catatan: Catatan) {
+            }
+
+            override fun onUpdate(catatan: Catatan) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDelete(catatan: Catatan) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    loadData()
+                    db?.catatanDao()?.deleteCatatan(catatan)
+                }
+            }
+
+        })
         loadData()
         CoroutineScope(Dispatchers.IO).launch {
             val catatan = db!!.catatanDao().getCatatans()
@@ -69,8 +84,8 @@ class HalamanCatatan : Fragment() {
 
             override fun onDelete(catatan: Catatan) {
                 CoroutineScope(Dispatchers.IO).launch {
-                    db?.catatanDao()?.deleteCatatan(catatan)
                     loadData()
+                    db?.catatanDao()?.deleteCatatan(catatan)
                 }
             }
 
