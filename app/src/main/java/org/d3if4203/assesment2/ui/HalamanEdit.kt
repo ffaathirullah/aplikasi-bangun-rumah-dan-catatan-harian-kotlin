@@ -16,7 +16,7 @@ import org.d3if4203.assesment2.db.CatatanDB
 
 class HalamanEdit : Fragment() {
 
-    private val db by lazy { this.getContext()?.let { CatatanDB(it) } }
+    private val db by lazy { this.context?.let { CatatanDB(it) } }
     private var catatanId = 0
 
     private lateinit var binding: FragmentEditBinding
