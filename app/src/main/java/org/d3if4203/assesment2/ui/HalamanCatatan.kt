@@ -1,6 +1,5 @@
 package org.d3if4203.assesment2.ui
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -94,6 +93,8 @@ class HalamanCatatan : Fragment() {
             }
 
             override fun onUpdate(catatan: Catatan) {
+                val catatan1 = catatan.id
+                view?.findNavController()?.navigate(HalamanCatatanDirections.actionHalamanCatatanToHalamanUpdate(catatan1, catatan.judul, catatan.catatan))
             }
 
             override fun onDelete(catatan: Catatan) {
@@ -107,4 +108,5 @@ class HalamanCatatan : Fragment() {
             }
         }
 
-    }
+
+}

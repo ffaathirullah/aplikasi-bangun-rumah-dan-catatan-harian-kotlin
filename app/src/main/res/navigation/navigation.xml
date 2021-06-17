@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
     app:startDestination="@id/halamanAwal">
     <fragment
         android:id="@+id/halamanAwal"
@@ -14,18 +16,38 @@
     <fragment
         android:id="@+id/halamanCatatan"
         android:name="org.d3if4203.assesment2.ui.HalamanCatatan"
-        android:label="HalamanCatatan" >
+        android:label="HalamanCatatan">
         <action
             android:id="@+id/action_halamanCatatan_to_halamanEdit"
             app:destination="@id/halamanEdit"
+            app:popUpTo="@id/halamanAwal" />
+        <action
+            android:id="@+id/action_halamanCatatan_to_halamanUpdate"
+            app:destination="@id/halamanUpdate"
             app:popUpTo="@id/halamanAwal" />
     </fragment>
     <fragment
         android:id="@+id/halamanEdit"
         android:name="org.d3if4203.assesment2.ui.HalamanEdit"
-        android:label="HalamanEdit" >
+        android:label="HalamanEdit">
         <action
             android:id="@+id/action_halamanEdit_to_halamanCatatan"
             app:destination="@id/halamanCatatan" />
+    </fragment>
+    <fragment
+        android:id="@+id/halamanUpdate"
+        android:name="org.d3if4203.assesment2.ui.HalamanUpdate"
+        android:label="HalamanUpdate" >
+        <argument android:name="catatan_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_halamanUpdate_to_halamanCatatan"
+            app:destination="@id/halamanCatatan"
+            app:popUpTo="@id/halamanAwal" />
+        <argument
+            android:name="judul"
+            app:argType="string" />
+        <argument android:name="catatan"
+            app:argType="string" />
     </fragment>
 </navigation>
