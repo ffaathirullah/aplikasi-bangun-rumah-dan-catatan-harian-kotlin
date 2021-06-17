@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface ApiEndpoint {
 
-    @GET("saran2.json")
+    @GET("catat.json")
     fun getData(): Call<MainModel>
 }

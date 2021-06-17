@@ -57,5 +57,23 @@
     <fragment
         android:id="@+id/saranFragment"
         android:name="org.d3if4203.assesment2.ui.HalamanSaran"
-        android:label="SaranFragment" />
+        android:label="SaranFragment" >
+        <action
+            android:id="@+id/action_saranFragment_to_halamanDetailSaran"
+            app:destination="@id/halamanDetailSaran" />
+    </fragment>
+    <fragment
+        android:id="@+id/halamanDetailSaran"
+        android:name="org.d3if4203.assesment2.ui.HalamanDetailSaran"
+        android:label="HalamanDetailSaran" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument
+            android:name="saran"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -119,6 +119,4 @@ class HalamanCatatan : Fragment() {
             adapter = catatanAdapter
             }
         }
-
-
 }
