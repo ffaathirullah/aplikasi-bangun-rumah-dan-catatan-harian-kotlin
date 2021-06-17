@@ -28,7 +28,6 @@ class HalamanUpdate : Fragment() {
         getTitle()
         getCatatan()
         setupLstener()
-//        Toast.makeText(context, "NumCorrect: ${args.catatanId}, NumQuestions: ", Toast.LENGTH_LONG).show()
 
         return binding.root
     }

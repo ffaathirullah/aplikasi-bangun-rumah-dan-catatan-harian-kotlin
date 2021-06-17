@@ -29,6 +29,10 @@
             android:id="@+id/action_halamanCatatan_to_saranFragment"
             app:destination="@id/saranFragment"
             app:popUpTo="@id/halamanAwal" />
+        <action
+            android:id="@+id/action_halamanCatatan_to_halamanDetailCatatan"
+            app:destination="@id/halamanDetailCatatan"
+            app:popUpTo="@id/halamanAwal" />
     </fragment>
     <fragment
         android:id="@+id/halamanEdit"
@@ -74,6 +78,19 @@
             app:argType="string" />
         <argument
             android:name="saran"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/halamanDetailCatatan"
+        android:name="org.d3if4203.assesment2.ui.HalamanDetailCatatan"
+        android:label="HalamanDetailCatatan" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="judul"
+            app:argType="string" />
+        <argument android:name="catatan"
             app:argType="string" />
     </fragment>
 </navigation>

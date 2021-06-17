@@ -102,6 +102,8 @@ class HalamanCatatan : Fragment() {
     private fun setupRecyclerView () {
         catatanAdapter = CatatanAdapter(arrayListOf(),  object : CatatanAdapter.OnAdapterListener {
             override fun onClick(catatan: Catatan) {
+                val catatan1 = catatan.id
+                view?.findNavController()?.navigate(HalamanCatatanDirections.actionHalamanCatatanToHalamanDetailCatatan(catatan1, catatan.judul, catatan.catatan))
             }
 
             override fun onUpdate(catatan: Catatan) {
