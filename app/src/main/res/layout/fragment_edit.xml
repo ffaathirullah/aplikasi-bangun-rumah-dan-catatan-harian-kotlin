@@ -39,16 +39,6 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/background"
         />
-    <Button
-        android:id="@+id/btnUpdate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="UPDATE"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSave"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/background"
-        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
