@@ -33,14 +33,10 @@ class HalamanUpdate : Fragment() {
         return binding.root
     }
     private fun getCatatan(){
-        CoroutineScope(Dispatchers.IO).launch {
             binding.editCatatan.setText(args.catatan)
-        }
     }
     private fun getTitle(){
-        CoroutineScope(Dispatchers.IO).launch {
             binding.editTitle.setText(args.judul)
-        }
     }
     private fun setupLstener(){
 
