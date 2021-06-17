@@ -25,6 +25,10 @@
             android:id="@+id/action_halamanCatatan_to_halamanUpdate"
             app:destination="@id/halamanUpdate"
             app:popUpTo="@id/halamanAwal" />
+        <action
+            android:id="@+id/action_halamanCatatan_to_saranFragment"
+            app:destination="@id/saranFragment"
+            app:popUpTo="@id/halamanAwal" />
     </fragment>
     <fragment
         android:id="@+id/halamanEdit"
@@ -50,4 +54,8 @@
         <argument android:name="catatan"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/saranFragment"
+        android:name="org.d3if4203.assesment2.ui.HalamanSaran"
+        android:label="SaranFragment" />
 </navigation>

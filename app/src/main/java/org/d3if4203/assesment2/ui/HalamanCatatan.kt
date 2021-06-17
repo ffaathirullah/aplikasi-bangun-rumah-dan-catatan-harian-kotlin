@@ -2,11 +2,10 @@ package org.d3if4203.assesment2.ui
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +26,21 @@ class HalamanCatatan : Fragment() {
         binding = FragmentCatatanBinding.inflate(layoutInflater, container, false)
         nextHalaman()
         setupRecyclerView()
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu, menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_saran) {
+            findNavController().navigate(
+                R.id.action_halamanCatatan_to_saranFragment)
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun loadData(){
@@ -57,7 +70,6 @@ class HalamanCatatan : Fragment() {
             withContext(Dispatchers.Main){
                 catatanAdapter.setData(catatan)
             }
-            Log.d("MainActivity", "dbRespons : $catatan")
 
         }
         super.onCreate(savedInstanceState)
